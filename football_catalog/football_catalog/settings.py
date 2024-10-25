@@ -2,6 +2,10 @@ from pathlib import Path
 import django_heroku
 import dj_database_url
 import os
+import psycopg2
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,13 +20,7 @@ SECRET_KEY = 'django-insecure-vdhiw@7^#atpo(h5@ac&6azx@adc(s!x2)+lh#4cp#=sk0(1&j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '192.168.18.133',
-    '0.0.0.0',
-    ''
-]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -88,17 +86,17 @@ WSGI_APPLICATION = 'football_catalog.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),       # Corrected: use environment variable for database name
-        'USER': os.getenv('DB_USER'),       # Corrected: use environment variable for username
-        'PASSWORD': os.getenv('DB_PASSWORD'),  # Corrected: use environment variable for password
-        'HOST': os.getenv('DB_HOST'),       # Corrected: use environment variable for host
-        'PORT': os.getenv('DB_PORT', '5432'),  # Default to 5432 if not set
+        'NAME': os.getenv('DB_NAME'),       
+        'USER': os.getenv('DB_USER'),       
+        'PASSWORD': os.getenv('DB_PASSWORD'),  
+        'HOST': os.getenv('DB_HOST'),       
+        'PORT': os.getenv('DB_PORT', '5432'),  
     }
 }
 
 
-# Password validation
-# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
+
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
